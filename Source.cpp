@@ -24,6 +24,17 @@ public:
 	~vector() {
 		delete[] data;
 	}
+	T& operator [](const int index) {
+		if (index < 0 || index > size) throw("Некорректный индекс");
+		return data[index];
+	}
+	vector& operator +=(const vector& object) {
+		if (size != object.size) throw("Разные размерности");
+		for (int i = 0; i < size; i++) {
+			data[i] += object.data[i];
+		}
+		return(*this);
+	}
 };
 int main() {
 
