@@ -89,6 +89,34 @@ public:
 		}
 		return tmp;
 	}
+	bool operator==(const vector& object) {
+		if (size != object.size) throw("Different dimensions");
+		for (int i = 0; i < size; i++) {
+			if (data[i] != object.data[i]) return false;
+		}
+		return true;
+	}
+	bool operator!=(const vector& object) {
+		if (size != object.size) throw("Different dimensions");
+		for (int i = 0; i < size; i++) {
+			if (data[i] == object.data[i]) return false;
+		}
+		return true;
+	}
+	vector& operator /=(const T& value) {
+		if (value == 0) throw("Divizion by zero");
+		for (int i = 0; i < size; i++) {
+			data[i] /= value;
+		}
+		return(*this);
+	}
+	friend vector operator / (const vector& object, const T& value) {
+		vector tmp(object.size);
+		for (int i = 0; i < object.size; i++) {
+			tmp.data[i] = object.data[i] / value;
+		}
+		return tmp;
+	}
 };
 int main() {
 
