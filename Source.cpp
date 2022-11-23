@@ -25,13 +25,26 @@ public:
 		delete[] data;
 	}
 	T& operator [](const int index) {
-		if (index < 0 || index > size) throw("Некорректный индекс");
+		if (index < 0 || index > size) throw("Incorrect index");
 		return data[index];
 	}
 	vector& operator +=(const vector& object) {
-		if (size != object.size) throw("Разные размерности");
+		if (size != object.size) throw("Different dimensions");
 		for (int i = 0; i < size; i++) {
 			data[i] += object.data[i];
+		}
+		return(*this);
+	}
+	vector& operator -=(const vector& object) {
+		if (size != object.size) throw("Different dimensions");
+		for (int i = 0; i < size; i++) {
+			data[i] -= object.data[i];
+		}
+		return(*this);
+	}
+	vector& operator *=(const T& value) {
+		for (int i = 0; i < size; i++) {
+			data[i] *= value;
 		}
 		return(*this);
 	}
